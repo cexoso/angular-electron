@@ -1,5 +1,8 @@
-<div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
-</div>
+{{hostPages | json}}
+<ul>
+    <li *ngFor="let hostPage of hostPages" [class.isSelected]="hostPage === current" (click)="changeCurrent(hostPage)">
+        {{hostPage.name}}
+        <input type="checkbox" [(ngModel)]="hostPage.isSelected">
+    </li>
+</ul>
+<app-textfield [(content)]="current.text"></app-textfield>
