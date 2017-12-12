@@ -7,7 +7,7 @@ import HostPage from '../../hostPage';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   title = 'app';
   hostPages: HostPage[];
   current: HostPage;
@@ -15,21 +15,23 @@ export class HomeComponent implements OnInit {
     this.current = hostPage;
   }
   constructor() {
-    this.hostPages = [{
-      name: 'system',
-      isSelected: true,
-      text: '123'
-    }, {
-      name: 'page1',
-      isSelected: false,
-      text: '456'
-    }];
-    this.current = this.hostPages[0];
-  }
-  ngOnInit() {
     const path = `C:\\Windows\\System32\\drivers\\etc\\hosts`;
     readFile(path, (error, content) => {
-      console.log(error || content.toString())
+      this.hostPages = [{
+        name: 'system',
+        isSelected: true,
+        text: content.toString()
+      }];
+      this.current = this.hostPages[0];
     })
+  }
+  addNew(value) {
+    const hostPage = {
+      name: value,
+      isSelected: true,
+      text: ""
+    }
+    this.hostPages.push(hostPage)
+    this.current = hostPage;
   }
 }
