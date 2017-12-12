@@ -14,11 +14,11 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ElectronService } from './providers/electron.service';
+import { LocalStorage } from './providers/localstorage'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TextfieldComponent } from './components/textfield/textfield.component';
-
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,7 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService],
+  providers: [ElectronService, LocalStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
