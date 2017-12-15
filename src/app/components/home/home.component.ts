@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { readFile } from 'fs'
 import HostPage from '../../hostPage';
 import { LocalStorage } from '../../providers/localstorage'
-import { Subject } from 'rxjs'
+import { Subject } from 'rxjs/Subject'
 
-const key = "hostPage"
+const key = 'hostPage'
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -38,7 +38,7 @@ export class HomeComponent {
         const hostPage = {
             name: value,
             isSelected: true,
-            text: ""
+            text: ''
         }
         this.hostPages.push(hostPage)
         this.current = hostPage;
